@@ -1,0 +1,50 @@
+
+  <h1>Listing users</h1>
+<% if session[:admin_id] %>
+              You are logged as: <strong><%= @admin[:user_name] %></strong>.
+            <%= link_to "logout",:controller => "admins", :action=>"logout" %>
+<% end %>
+  <table style="background:#FFD2A9">
+    <tr>
+      <th>Name</th>
+      <th>Identity</th>
+      <th>Email</th>
+      <th>Create_date</th>
+      <th>Login_date</th>
+      <th>State</th>
+      <th>Information</th>
+      <th>Auctions/Bids</th>
+      <th>Active</th>
+      <th>Deactive</th>
+    </tr>
+
+    <% if @user != nil %>
+      <% @user.each do |user| %>
+        <tr>
+          <td><%=h user.username %></td>
+          <td><% if user.identity %>seller<% else %>buyer<% end %></td>
+          <td><%=h user.email %></td>
+          <td><%=h user.register_date %></td>
+          <td><%=h user.change_date %></td>
+          <td><div id="state<%= user.id %>"><%= user.state %></div></td>
+          <td><a href="/users/personalInfo/<%= user.id %>">show</a></td>
+<td><a href="/users/<%= user.id %>"><% if user.identity %>auctions<% else %>bids<% end %></a></td>
+          <td><%= link_to_remote( "active",:update => "state"+user.id.to_s, :url =>{ :action => "activeuser", :id => user.id }) %></td>
+          <td><%= link_to_remote( "deactive",:update => "state"+user.id.to_s, :url =>{ :action => "deactiveuser", :id => user.id }) %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% else %>
+      No user now
+    <% end %>
+  </table>
+
+  <td><a href="activeall">Activate all users</a></td>
+  <td><a href="deactiveall">Deactivate all users</a></td>
+
+  <div id="active_result"></div>
+
+  <p style="color: green;font-size:large;"><%= flash[:notice] %></p>
+  <p style="color: red"><%= flash[:error] %></p>
+  <p style="color: orange"><%= flash[:warning] %></p>
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  user_name: admins
+  password: admins
+  create_date: 2010-09-30 22:22:33
+  login_date: 2010-09-30 22:22:33
+  email: admins@andrew.cmu.edu
+
+two:
+  id: 2
+  user_name: admin1
+  password: admin1
+  create_date: 2010-09-30 22:22:33
+  login_date: 2010-09-30 22:22:33
+  email: admin1@andrew.cmu.edu

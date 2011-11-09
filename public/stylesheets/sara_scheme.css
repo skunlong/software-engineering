@@ -1,0 +1,61 @@
+/* ----------------------------------------------------------------------------------------------------------
+
+    This website template was downloaded from http://www.nuviotemplates.com - visit us for more templates
+
+---------------------------------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------------
+HTML
+---------------------------------------------------------------------------------------------------------- */
+
+body {background:#FFEEB2; color:#000;}
+
+a {color:#B67802;}
+a:hover {color:#E85902;}
+
+fieldset {border:1px solid #FFC608;}
+legend {background:#E85902; color:#FFF;}
+
+table.table-style01 th {background:#E85902; color:#FFF;}
+table.table-style01 th, table.table-style01 td {border:1px solid #FFC608;}
+table.table-style01 tr.bg td {background:#FFF6D6;}
+
+ul.ul-style01 ul li {color:#B67802;}
+
+/* ----------------------------------------------------------------------------------------------------------
+Layout
+---------------------------------------------------------------------------------------------------------- */
+
+#main {border-top:10px solid #E85902; background:#FFF;}
+
+#header {background-color:#FFC608;}
+
+#logo {color:#FFF;}
+#logo span {color:#000;}
+#logo a {color:#FFF;}
+
+#url {color:#FFF;}
+#url a {color:#FFF;}
+#url a:hover {color:#000;}
+
+#slogan {background:#E89A02; color:#FFF;}
+
+#content h1 {border-bottom:1px solid #FFC608;}
+
+#content #perex {border-bottom:1px solid #FFE999;}           
+#content .boxes {border:1px solid #FFC608; background:#FFF6D6;}
+#content .input-submit {border:1px solid #E85902; background:#E85902; color:#FFF;}
+
+#aside {background:#FFDE6F;}
+
+#search {background:#FFC608;}
+#search #search-input {border:1px solid #FFF;}
+#search #search-submit {border:1px solid #E85902; background:#E85902; color:#FFF;}
+
+#nav li a {border-bottom:1px solid #FFC608; color:#B67802;}
+#nav li#nav-active a {color:#000;}
+#nav li a:hover {color:#000;}
+
+#footer {background:#E85902; color:#FFEAA2;}
+#footer a {color:#FFEAA2;}
+#footer a:hover {color:#FFF;}

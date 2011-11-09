@@ -1,0 +1,18 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  auction_id: 1
+  user_id: 1
+  bid_price: 9.99
+
+two:
+  auction_id: 1
+  user_id: 1
+  bid_price: 9.99
+
+three:
+  auction_id: 1
+  user_id: 2
+  bid_price: 20.00
+
+

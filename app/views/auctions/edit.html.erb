@@ -1,0 +1,344 @@
+
+<title>Edit <%= @auction.auction_name %></title>
+<!-- Change the title name-->
+
+<body>
+
+  <div id="main">
+
+    <!-- Header -->
+    <div id="header">
+<%#= link_to "Home",  :controller => "main", :action => "welcome" %>
+      <h4 id="logo"><%= link_to "Phoenix",  :controller => "main", :action => "welcome" %></h4>
+      <!-- ????-->
+      <hr class="noscreen" />
+      <th align="right" width="600">
+        <font size="2">
+          <% if session[:user_id].nil? %>
+            Welcome <strong>Guest</strong>!
+            <%= link_to "Sign in",:controller => "users", :action => "login" %> or
+            <%= link_to "Register",:controller => "users",:action => "new" %>
+          <% else %>
+            You are logged as: <strong><%= @user[:username] %></strong>.
+            <%= link_to "logout",:controller => "users", :action=>"logout" %>
+          <% end %>
+        </font>
+        <div id="search">
+
+        </div>
+      </th>
+    </div> <!-- /header -->
+
+
+    <!-- Tray -->
+    <div id="tray">
+
+      <ul class="box">
+        <li id="tray-active"><a href="/">Homepage</a></li> <!-- Active page -->
+
+        <% if session[:username].nil? %>
+          <li><%= link_to "Auctions",:controller => "auctions", :action => "index" %></li>
+          <li><%= link_to "My Account", @user %></li>
+          <li><%= link_to "Questions" , :action => "" %></li>
+          <li><%= link_to "News" , :action => "" %></li>
+          <li><%= link_to "Contact" , :action => "" %></li>
+          <li><%= link_to "Help",:controller => "" %></li>
+        <%end%>
+
+      </ul>
+
+      <hr class="noscreen" />
+    </div> <!-- /tray -->
+
+    <!-- Columns -->
+    <div id="cols" class="box">
+
+      <!-- Content -->
+      <div id="content">
+
+        <div id="content-left">
+
+
+          <h1>Editing auction</h1>
+
+          <% form_for(@auction) do |f| %>
+            <%= f.error_messages %>
+
+            <p>
+              <%= f.label :auction_name %><br />
+              <%= f.text_field :auction_name %>
+            </p>
+            <p>
+              <%= f.label :description %><br />
+              <%= f.text_area :description %>
+            </p>
+            <p>
+              <%= f.label :image_url %><br />
+              <%= f.text_field :image_url %>
+            </p>
+            <p>
+              <%= f.label :category %><br />
+              <%= select(:auction, :category, [
+                  ['Select a Category', 'None'],
+                  ['Baby', 'Baby'],
+                  ['Books', 'Books'],
+                  ['Bags & Luggage', 'Bags & Luggage'],
+                  ['Movies & Music->Movies', 'Movies & Music->Movies'],
+                  ['Movies & Music->Music', 'Movies & Music->Music'],
+                  ['Musical Instruments', 'Musical Instruments'],
+                  ['Electronic->HDTV & Video', 'Electronic->HDTV & Video'],
+                  ['Electronic->Home Audio & Theater', 'Electronic->Home Audio & Theater'],
+                  ['Electronic->Cameras', 'Electronic->Cameras'],
+                  ['Electronic->Cell Phones & Smartphone', 'Electronic->Cell Phones & Smartphone'],
+                  ['Electronic->Video Games', 'Electronic->Video Games'],
+                  ['Computers & Office->Computers', 'Computers & Office->Computers'],
+                  ['Computers & Office->Software', 'Computers & Office->Software'],
+                  ['Computers & Office->Office Supplies', 'Computers & Office->Office Supplies'],
+                  ['Computers & Office->Networking', 'Computers & Office->Networking'],
+                  ['Home & Outdoor', 'Home & Outdoor'],
+                  ['Household Essentials', 'Household Essentials'],
+                  ['Health & Beauty', 'Health & Beauty'],
+                  ['Clothing, Shoes & Jewelry->Shoes', 'Clothing, Shoes & Jewelry->Shoes'],
+                  ['Clothing, Shoes & Jewelry->Clothing', 'Clothing, Shoes & Jewelry->Clothing'],
+                  ['Clothing, Shoes & Jewelry->Jewelry', 'Clothing, Shoes & Jewelry->Jewelry'],
+                  ['Clothing, Shoes & Jewelry->Watches', 'Clothing, Shoes & Jewelry->Watches'],
+                  ['Pet Supplies', 'Pet Supplies'],
+                  ['Sport', 'Sport'],
+                  ['Toys', 'Toys'],
+                  ['Travel', 'Travel'],
+                  ['Toys', 'Toys']
+                ]) %>
+            </p>
+            <p>
+              <%= f.label :start_price %><br />
+              <%= f.text_field :start_price %>
+            </p>
+            <p>
+              <%= f.label :current_price %><br />
+              <%= f.text_field :current_price %>
+            </p>
+
+            <p>
+              <%= f.label :expire %><br />
+              <%= f.datetime_select :expire %>
+            </p>
+
+            <p>
+              <%= f.submit 'Update' %>
+            </p>
+          <% end %>
+
+          <h2><%= link_to 'Show', @auction %></h2>
+          <h2> <%= link_to 'Back', auctions_path %></h2>
+
+        </div> <!-- /content-left -->
+
+        <hr class="noscreen" />
+
+        <div id="content-right">
+
+          <!-- Ads 125x125 -->
+
+          <div class="box">
+
+            <td>
+
+              <% if @auction.status != true %>
+                <font color="red"><strong><i>This auction is closed.</i></strong></font>
+              <%end%>
+
+              <% if @auction.visible != true %>
+                <font color="red"><strong><i>This auction was suspended.</i></strong></font>
+              <%end%>
+
+
+            </td>
+            <h3>The current price: <%=h @auction.current_price %></h3>
+
+            <h3>Time left: 3min40s </h3>
+            <h3>Bid history: 1</h3>
+            <h2>Add to watchlist</h2>
+            <h2>Your Max bid</h2>
+
+          </div>
+
+          <!-- News -->
+          <div class="box-01-top"></div>
+          <div class="box-01-top-b box">
+            <span class="f-right">Updated: 12.6.2010 @ 15:34</span>
+
+            <span class="f-left"><strong>News</strong></span>
+          </div> <!-- /box-01-top-b -->
+          <div class="box-01">
+
+            <dl class="news box">
+              <dt>DEC<br /><span>6</span></dt>
+              <dd><span>@ 15:34</span><br />Free shipping! Phoenix auction website pays the shipping for every customer!</dd>
+
+            </dl>
+
+            <div class="bg">
+              <dl class="news box">
+                <dt>DEC<br /><span>6</span></dt>
+                <dd><span>@ 12:26</span><br />Phoenix auction website is open for our customers. Thanks for joining us. Soar with us to a high level!</dd>
+              </dl>
+
+            </div> <!-- /bg -->
+
+            <dl class="news box">
+              <dt>DEC<br /><span>5</span></dt>
+              <dd><span>@ 10:55</span><br />Phoenix auction website is under test run. Thanks for your advices!</dd>
+            </dl>
+
+          </div> <!-- /box-01 -->
+          <div class="box-01-bottom"></div>
+
+          <!-- Most readed articles -->
+          <div class="box-02-top"></div>
+          <div class="box-02-top-b box">
+            <span class="f-left"><strong>Most popular articles</strong></span>
+          </div> <!-- /box-02-top-b -->
+          <div class="box-02 box">
+
+            <ul class="mostreaded">
+
+              <li><span class="f-right">125</span><a href="#">Kindle Wireless Reading Device</a></li>
+              <li><span class="f-right">19.25</span><a href="#">Aluratek Universal Laptop Charger</a></li>
+              <li><span class="f-right">3</span><a href="#">MP3 Free Song: Alter Bridge</a></li>
+              <li><span class="f-right">1125</span><a href="#">Lenovo T410 laptop</a></li>
+              <li><span class="f-right">22</span><a href="#">Book: Ruby on Rails</a></li>
+
+            </ul>
+
+          </div> <!-- /box-02 -->
+          <div class="box-02-bottom"></div>
+
+
+          <!-- Most readed articles -->
+          <div class="box-02-top"></div>
+          <div class="box-02-top-b box">
+            <span class="f-left"><strong>Last Second Bids</strong></span>
+          </div> <!-- /box-02-top-b -->
+          <div class="box-02 box">
+
+            <ul class="mostreaded">
+
+              <li><span class="f-right">125</span><a href="/">Kindle Wireless Reading Device</a></li>
+              <li><span class="f-right">19.25</span><a href="#">Aluratek Universal Laptop Charger</a></li>
+              <li><span class="f-right">3</span><a href="#">MP3 Free Song: Alter Bridge</a></li>
+              <li><span class="f-right">1125</span><a href="#">Lenovo T410 laptop</a></li>
+              <li><span class="f-right">22</span><a href="#">Book: Ruby on Rails</a></li>
+
+            </ul>
+
+          </div> <!-- /box-03 -->
+          <div class="box-02-bottom"></div>
+
+          <!-- Most readed articles -->
+          <div class="box-02-top"></div>
+          <div class="box-02-top-b box">
+            <span class="f-left"><strong>Lowest price articles</strong></span>
+          </div> <!-- /box-02-top-b -->
+          <div class="box-02 box">
+
+            <ul class="mostreaded">
+
+              <li><span class="f-right">125</span><a href="#">Kindle Wireless Reading Device</a></li>
+              <li><span class="f-right">19.25</span><a href="#">Aluratek Universal Laptop Charger</a></li>
+              <li><span class="f-right">3</span><a href="#">MP3 Free Song: Alter Bridge</a></li>
+              <li><span class="f-right">1125</span><a href="#">Lenovo T410 laptop</a></li>
+              <li><span class="f-right">22</span><a href="#">Book: Ruby on Rails</a></li>
+            </ul>
+
+          </div> <!-- /box-04 -->
+          <div class="box-02-bottom"></div>
+
+        </div> <!-- /content-right -->
+
+        <hr class="noscreen" />
+      </div> <!-- /content -->
+
+      <!-- Aside -->
+      <div id="aside">
+
+        <div id="aside-top"></div>
+
+
+
+        <!-- Categories -->
+        <div class="padding">
+
+          <h4 class="margin">Search:</h4>
+
+          <form action="#" method="get">
+            <div id="search" class="box">
+              <input type="text" size="20" id="search-input" /><input type="submit" id="search-submit" value="Search" />
+            </div> <!-- /search -->
+          </form>
+
+
+          <h4 class="nom">Categories:</h4>
+        </div> <!-- /padding -->
+
+
+        <ul class="nav">
+          <li id="nav-active"><a href="#">Woman clothes</a> <!-- Active -->
+            <ul>
+              <li><a href="#">T-shirt</a></li>
+              <li><a href="#">Dress</a></li>
+              <li><a href="#">Denim</a></li>
+
+              <li><a href="#">Sleepwear</a></li>
+              <li><a href="#">Coats</a></li>
+            </ul>
+          </li>
+          <li><a href="Luggage">Luggage</a></li>
+          <li><a href="Book">Book</a></li>
+          <li><a href="wireless">Wireless</a></li>
+          <li><a href="Apparel">Apparel</a></li>
+          <li><a href="Comp">Comp</a></li>
+          <li><a href="Costumes">Costumes</a></li>
+          <li><a href="Digcam">Digicam</a></li>
+          <li><a href="Electronics">Electronics</a></li>
+          <li><a href="Finance">Finance</a></li>
+          <li><a href="jewelry">jewelry</a></li>
+        </ul>
+
+        <!-- RSS feeds -->
+        <div class="padding">
+
+          <h4 class="margin">RSS feeds:</h4>
+
+          <p class="nom">
+            <a href="#" class="rss">Articles</a><br />
+            <a href="#" class="rss">Comments</a>
+          </p>
+
+
+
+        </div> <!-- /padding -->
+
+        <hr class="noscreen" />
+      </div> <!-- /aside -->
+
+
+      <div id="aside-bottom"></div>
+
+    </div> <!-- /cols -->
+
+    <!-- Footer -->
+    <div id="footer">
+
+      <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
+      <p class="f-right"><a href="http://www.nuviotemplates.com/">Phoenix Auction Website</a> <a>presented by Phoenix Team</a> &ndash; <a href="http://www.cmu.edu">Carnegie Mellon University</a> <a href="http://www.cmu.edu/silicon-valley/">Silicon Valley</a></p>
+
+      <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
+
+      <p>Copyright &copy;&nbsp;2010 <strong><a href="#">Poenix</a></strong>, All Rights Reserved &reg;</p>
+
+    </div> <!-- /footer -->
+
+  </div> <!-- /main -->
+
+</body>
+

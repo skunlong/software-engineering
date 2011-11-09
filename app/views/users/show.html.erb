@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag "general" %>
+
+  </head>
+
+  <body id="users">
+    <div id="wrap">
+
+      <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="right">
+            <font size="2">
+              <%= link_to "Home", :controller => "main", :action=> "welcome" %> |
+              <%= link_to "My Account", @user %> |
+              <%= link_to "Auctions",:controller => "Auctions" %> |
+              <%= link_to "Help",:controller => "" %> |
+              <%= link_to "Contact us", :action => "" %> |
+              <%= link_to "FAQ", :action => "" %>
+            </font>
+            <tr><td><br></br></td></tr>
+          </td>
+        </tr>
+      </table>
+
+
+      <table align="center" width="90%" border="0" cellspacing ="0" cellpadding="0">
+        <tr>
+          <td align="left">
+            <% if session[:user_id].nil? %> <strong><i>Welcome!</i></strong>
+                      <%= link_to "Sign in",:controller => "users", :action => "login" %> or
+                      <%= link_to "Register",:controller => "users",:action => "new" %>
+                    <% else %>
+                      You are logged as: <strong><%= @user[:username] %></strong>.
+                      <%= link_to "logout",:controller => "users", :action=>"logout" %>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr><td><br></br></td></tr>
+              </table>
+
+              <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="6" cellpadding="0">
+                <tr><td>
+                    <form name="input" action="html_form_action.asp" method="get">
+                      <i>What are you looking for?</i>
+                      <input type="text" size="30" name="user" />
+                      <input type="submit" size="15" value="Search Away!" />
+                      <%= link_to "Advanced Search",:controller => "" %>
+                    </form>
+                  </td></tr>
+              </table>
+
+
+
+              <div id="columns">
+                <div id="sideTOP">
+                  <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+                    <tr><td><u><%= link_to "Activity Summary", @user %></u></td></tr>
+                  </table>
+                  <br>
+                    <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+                      <tr><td><u><%= link_to "Personal Information", :controller => "users", :action=> "personalInfo" %></u></td></tr>
+                    </table>
+                    <br>
+                      <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+                        <tr><td><u><%= link_to "Messages", :controller => "messages", :action=> "index" %></u></td></tr>
+                      </table>
+                      <br />
+
+                      <table align="center" width="100%" border="0" cellspacing="140" cellpadding="0">
+                        <tr><td>&nbsp;</td></tr>
+                      </table>
+
+
+
+
+                      </div>
+                      </div>
+
+                      <!-- Font codes by Quackit.com -->
+
+                      <p style="color: green;font-size:large;"><%= flash[:notice] %></p>
+                      <p style="color: red"><%= flash[:error] %></p>
+                      <p style="color: orange"><%= flash[:warning] %></p>
+
+
+                      <%= yield %>
+
+
+                <table width="80%"align="center"bgcolor="#8a0404">
+                        <tr><td align="center"><font color="white">Watch List</font></td></tr>
+                      </table>
+                      <table align="center" width="80%" border="0" cellspacing="0" cellpadding="0">
+                        <tr><td><br></br></td></tr>
+                        <tr><td width="57%" align="left">&nbsp;</td>
+                          <td width="5%">&nbsp;&nbsp;Bid</td><td width="7%">&nbsp;&nbsp;&nbsp;Price</td><td width="10%">&nbsp;&nbsp;&nbsp;&nbsp;Shipping</td><td width="21%">Time Close</td></tr>
+                      </table>
+                      <table align="center" width="80%" border="0" cellspacing="0" cellpadding="0">
+                        <tr><td><hr></hr></td></tr>
+                      </table>
+
+                      <table align="center" width="80%" border="0" cellspacing="0" cellpadding="0">
+                        <tr><td align="left" width="20%">&nbsp;&nbsp;&nbsp;<%= image_tag("boots3.jpg") %></td>
+                          <td align="left" width="40%"><a href="winter boots">Ed Hardy Winter Boots</a></td>
+                          <td width="2%">2</td><td width="7%">$69.99</td><td width="10%">$4.99</td><td width="21%">1d 08h</td>
+                        </tr>
+                        <tr><td align="center" width="20%"><a href="delete">Delete</a></td></tr>
+                        <tr><td>&nbsp;</td></tr>
+                      </table>
+                      <table align="center" width="80%" border="0" cellspacing="0" cellpadding="0">
+                        <tr><td align="left" width="20%">&nbsp;&nbsp;&nbsp;<%= image_tag("boots4.jpg") %></td>
+                          <td align="left" width="40%"><a href="winter boots">nice brown winter boots</a></td>
+                          <td width="2%">2</td><td width="7%">$49.99</td><td width="10%">$7.39</td><td width="21%">2d 01h</td>
+                        </tr>
+                        <tr><td align="center" width="20%"><a href="delete">Delete</a></td></tr>
+                        <tr><td>&nbsp;</td></tr>
+                      </table>
+
+                      <table width="80%"align="center"bgcolor="#8a0404">
+                        <tr><td align="center"><font color="white">Bidding</font></td></tr>
+                      </table>
+
+                      <%if @auctions != nil %>
+                        <% @auctions.each do |auction| %>
+                          <% if auction.status == true %>
+
+                            <table align="center" width="80%" border="0" cellspacing="0" cellpadding="0">
+                              <tr><td align="left" width="20%">&nbsp;&nbsp;&nbsp;<img src="<%=h auction.image_url %>" width="150" height="110"/></td>
+                                <td align="left" width="40%"><a href="/auctions/<%=h auction.id %>"> <%=h auction.auction_name %></a></td>
+                                <td width="2%">3</td><td width="7%">$<%=h auction.current_price %></td><td width="10%">$5.00</td><td width="21%"><%=h auction.expire %></td>
+                              </tr>
+                              <tr><td>&nbsp;</td></tr>
+                            </table>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+
+                      <th align="center" width="600">
+                        <%= image_tag("small logo.jpg") %>
+
+                        <font size="2">
+                          <%= link_to "Privacy", :controller => "" %>
+                          <%= link_to "About us",:controller => "" %>
+                          <%= link_to "Career" , :action => "" %>
+                          <%= link_to "Contact" , :action => "" %>
+
+                        </font>
+
+                      </th>
+                      </div>
+
+                      </body>
+                      </html>

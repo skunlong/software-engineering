@@ -1,0 +1,284 @@
+<title>Auction</title>
+<!-- Change the title name-->
+
+<body>
+
+  <div id="main">
+
+  
+
+    <!-- Tray -->
+    <div id="tray">
+
+      <ul class="box">
+        <li id="tray-active"><a href="/">Homepage</a></li> <!-- Active page -->
+
+        <% if session[:username].nil? %>
+          <li><%= link_to "Auctions",:controller => "auctions", :action => "index" %></li>
+          <li><%= link_to "My Account", @user %></li>
+          <li><%= link_to "Questions" , :action => "" %></li>
+          <li><%= link_to "News" , :action => "" %></li>
+          <li><%= link_to "Contact" , :action => "" %></li>
+          <li><%= link_to "Help",:controller => "" %></li>
+        <%end%>
+
+      </ul>
+
+      <hr class="noscreen" />
+    </div> <!-- /tray -->
+
+   <!-- /header -->
+    <div id="header">
+<%#= link_to "Home",  :controller => "main", :action => "welcome" %>
+
+
+      <!-- ????-->
+      <hr class="noscreen" />
+      <th align="right" width="600">
+        <font size="2">
+            You are logged as: <strong><%= @user[:username] %></strong>.
+            <%= link_to "logout",:controller => "users", :action=>"logout" %>
+        </font>
+        <div id="search">
+
+        </div>
+      </th>
+    </div>
+   <!-- /header -->
+
+    <!-- Columns -->
+    <div id="cols" class="box">
+
+      <!-- Content -->
+      <div id="content">
+
+        <div id="content-left">
+
+
+          <div id="topstory-bottom"></div>
+
+          <hr class="noscreen" />
+
+          <div id="content-left-in">
+            <h3 class="title">Auctions</h3>
+            <%if @auctions != nil %>
+              <% @auctions.each do |auction| %>
+                <% if auction.status == true %>
+                  <% if auction.user_name == @user.username %>
+
+                    <!-- Article -->
+                    <div class="article box">
+                      <div class="article-img">
+                        <img src="<%=h auction.image_url %>" width="180" height="135" alt="" />
+
+                      </div> <!-- /article-img -->
+                      <div class="article-desc">
+
+                        <h3><a href="/auctions/<%=h auction.id %>"><%=h auction.auction_name %></a></h3>
+                        <p class="info">Price: <strong><%=h auction.current_price %></strong> End at: <strong><a href="#"><%=h auction.expire %></a></strong> Category:  <strong><a href="#"><%=h auction.category %></a></strong></p>
+                        <p class="nomb"><%=h auction.description %></p>
+                        <% if auction.visible != true %>
+                          <h4>The auction is closed.</h4>
+                        <%end%>
+                      <%end%>
+
+                    </div>
+                  </div>
+                <% end %>
+                <!-- /article -->
+              <% end %>
+            <%  end %>
+            <p class="t-right"><%= link_to '>>Create New auction', new_auction_path %></a></p>
+
+          </div> <!-- /content-left-in -->
+
+        </div> <!-- /content-left -->
+
+        <hr class="noscreen" />
+
+        <div id="content-right">
+
+          <!-- Ads 125x125 -->
+
+          <div class="box">
+
+            <% if (!session[:user_id].nil? && @user.identity == 1) %>
+              <li><h2><%= link_to 'View my auction', new_auction_path %></h2></li>
+              <li><h2><%= link_to 'New auction', new_auction_path %></h2></li>
+
+            <% end %>
+
+          </div>
+
+          <!-- News -->
+          <div class="box-01-top"></div>
+          <div class="box-01-top-b box">
+
+            <span class="f-left"><strong>Account</strong></span>
+          </div> <!-- /box-01-top-b -->
+          <div class="box-01">
+
+            <dl class="news box">
+              <dt><%= link_to "Messages", :controller => "messages", :action=> "show" %><br /></dt>
+              
+
+            </dl>
+
+            <div class="bg">
+              <dl class="news box">
+                <dt><%= link_to "Personal Information", :controller => "users", :action=> "personalInfo" %><br /></dt>
+              </dl>
+
+            </div> <!-- /bg -->
+
+            
+          </div> <!-- /box-01 -->
+          <div class="box-01-bottom"></div>
+
+          <!-- Most readed articles -->
+          <div class="box-02-top"></div>
+          <div class="box-02-top-b box">
+            <span class="f-left"><strong>Most popular items</strong></span>
+          </div> <!-- /box-02-top-b -->
+          <div class="box-02 box">
+
+            <ul class="mostreaded">
+
+              <li><span class="f-right">125</span><a href="#">Kindle Wireless Reading Device</a></li>
+              <li><span class="f-right">19.25</span><a href="#">Aluratek Universal Laptop Charger</a></li>
+              <li><span class="f-right">3</span><a href="#">MP3 Free Song: Alter Bridge</a></li>
+              <li><span class="f-right">1125</span><a href="#">Lenovo T410 laptop</a></li>
+              <li><span class="f-right">22</span><a href="#">Book: Ruby on Rails</a></li>
+
+            </ul>
+
+          </div> <!-- /box-02 -->
+          <div class="box-02-bottom"></div>
+
+
+          <!-- Most readed articles -->
+          <div class="box-02-top"></div>
+          <div class="box-02-top-b box">
+            <span class="f-left"><strong>Sale</strong></span>
+          </div> <!-- /box-02-top-b -->
+          <div class="box-02 box">
+
+            <ul class="mostreaded">
+
+              <li><span class="f-right">125</span><a href="/">Kindle Wireless Reading Device</a></li>
+              <li><span class="f-right">19.25</span><a href="#">Aluratek Universal Laptop Charger</a></li>
+              <li><span class="f-right">3</span><a href="#">MP3 Free Song: Alter Bridge</a></li>
+              <li><span class="f-right">1125</span><a href="#">Lenovo T410 laptop</a></li>
+              <li><span class="f-right">22</span><a href="#">Book: Ruby on Rails</a></li>
+
+            </ul>
+
+          </div> <!-- /box-03 -->
+          <div class="box-02-bottom"></div>
+
+          <!-- Most readed articles -->
+          <div class="box-02-top"></div>
+          <div class="box-02-top-b box">
+            <span class="f-left"><strong>Hot deals</strong></span>
+          </div> <!-- /box-02-top-b -->
+          <div class="box-02 box">
+
+            <ul class="mostreaded">
+
+              <li><span class="f-right">125</span><a href="#">Kindle Wireless Reading Device</a></li>
+              <li><span class="f-right">19.25</span><a href="#">Aluratek Universal Laptop Charger</a></li>
+              <li><span class="f-right">3</span><a href="#">MP3 Free Song: Alter Bridge</a></li>
+              <li><span class="f-right">1125</span><a href="#">Lenovo T410 laptop</a></li>
+              <li><span class="f-right">22</span><a href="#">Book: Ruby on Rails</a></li>
+            </ul>
+
+          </div> <!-- /box-04 -->
+          <div class="box-02-bottom"></div>
+
+        </div> <!-- /content-right -->
+
+        <hr class="noscreen" />
+      </div> <!-- /content -->
+
+      <!-- Aside -->
+      <div id="aside">
+
+        <div id="aside-top"></div>
+
+
+
+        <!-- Categories -->
+        <div class="padding">
+         
+<%= image_tag("logo header.jpg")  %>
+          <h4 class="margin">Search:</h4>
+          <form action="#" method="get">
+            <div id="search" class="box">
+              <input type="text" size="20" id="search-input" /><input type="submit" id="search-submit" value="Search" />
+            </div> <!-- /search -->
+          </form>
+
+
+          <h4 class="nom">Categories:</h4>
+        </div> <!-- /padding -->
+
+
+        <ul class="nav">
+          <li id="nav-active"><a href="#">Apparel</a> <!-- Active -->
+            <ul>
+              <li><a href="#">Clothing</a></li>
+              <li><a href="#">Jewelry</a></li>
+              <li><a href="#">Hats</a></li>
+
+              <li><a href="#">Belt</a></li>
+              <li><a href="#">Shoes</a></li>
+            </ul>
+          </li>
+          <li><a href="Luggage">Book</a></li>
+          <li><a href="Book">Electronics</a></li>
+          <li><a href="wireless">Motors</a></li>
+          <li><a href="Apparel">Beauty</a></li>
+          <li><a href="Comp">Home/Decor</a></li>
+          <li><a href="Costumes">Outdoor Living</a></li>
+          <li><a href="Digcam">Art</a></li>
+          <li><a href="Electronics">Entertainment</a></li>
+          <li><a href="Finance">Christmas Gifts</a></li>
+        </ul>
+
+        <!-- RSS feeds -->
+        <div class="padding">
+
+          <h4 class="margin">RSS feeds:</h4>
+
+          <p class="nom">
+            <a href="#" class="rss">Articles</a><br />
+            <a href="#" class="rss">Comments</a>
+          </p>
+
+
+
+        </div> <!-- /padding -->
+
+        <hr class="noscreen" />
+      </div> <!-- /aside -->
+
+
+      <div id="aside-bottom"></div>
+
+    </div> <!-- /cols -->
+
+    <!-- Footer -->
+    <div id="footer">
+
+      <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
+      <p class="f-right"><a href="http://www.nuviotemplates.com/">Phoenix Auction Website</a> <a>presented by Phoenix Team</a> &ndash; <a href="http://www.cmu.edu">Carnegie Mellon University</a> <a href="http://www.cmu.edu/silicon-valley/">Silicon Valley</a></p>
+
+      <!-- Do you want remove this backlinks? Look at www.nuviotemplates.com/payment.php -->
+
+      <p>Copyright &copy;&nbsp;2010 <strong><a href="#">Phoenix</a></strong>, All Rights Reserved &reg;</p>
+
+    </div> <!-- /footer -->
+
+  </div> <!-- /main -->
+
+</body>

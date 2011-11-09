@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<style>
+input.myButton {
+   padding: 1px;
+   height: 25px;
+   width: 100px;
+}
+</style>
+</head>
+
+<script language="javascript">
+function add()
+{
+  var x,y,ans;
+  x= parseFloat(document.forms[0].x.value);
+  y= parseFloat(document.forms[0].y.value);
+  ans= x+y;
+  document.forms[0].ans.value=ans;
+}
+function minus()
+{
+	var x,y,ans;
+	x= parseFloat(document.forms[0].x.value);
+    y= parseFloat(document.forms[0].y.value);
+	ans= x-y;
+	document.forms[0].ans.value=ans;
+}
+function multiply()
+{
+	var x,y,ans;
+	x= parseFloat(document.forms[0].x.value);
+    y= parseFloat(document.forms[0].y.value);
+	ans=  x*y;
+	document.forms[0].ans.value=ans;
+}
+function divide()
+{
+	var x,y,ans;
+	x= parseFloat(document.forms[0].x.value);
+    y= parseFloat(document.forms[0].y.value);
+	ans=  x/y;
+	document.forms[0].ans.value=ans;
+}
+</script>
+
+<body>
+<form name="calculator" method="post">
+<table bgcolor="#FF6633" align="center" width="50%" border="1" cellspacing="15" cellpadding="0">
+<tr><td align="center">X:</td><td align="center"><input name="x" type="text" id="x" size="30"/></td>
+<td align="center"rowspan="2">
+	<table width="100%" bgcolor="#FFFFCC">
+	<tr><td align="center"><input type="button" name="add" id="add" value="+" onclick="add()" class"myButton" /></td>
+    	<td align="center"><input type="button" name="minus" id="minus" value="-" onclick="minus()" class"myButton" /></td>
+     </tr>
+	<tr><td align="center"><input type="button" name="multiply" id="multiply" value="* " onclick="multiply()" class"myButton" /></td>
+    	<td align="center"><input type="button" name="divide" id="divide" value="/" onclick="divide()" class"myButton" /></td>
+    </tr>
+</table>
+</td></tr>
+<tr><td align="center">Y:</td><td align="center"><input name="y" type="text" id="y" size="30" /></td></tr>
+<tr><td align="center" bgcolor="#FFFFCC">Answer:</td><td align="center"><input name="ans" type="text" id="ans" size="30" name="y" /></td></tr>
+<tr>
+</table>
+</form>
+</body>
+</html>

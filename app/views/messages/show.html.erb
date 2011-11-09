@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag "general" %>
+    <title>Auctions: <%= controller.action_name %></title>
+
+  </head>
+
+  <body id="users">
+    <div id="wrap">
+
+    <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="right">
+          <font size="2">
+          <%= link_to "Home", :controller => "main", :action=> "welcome" %> |
+          <%= link_to "My Account", @user %> |
+          <%= link_to "Auctions",:controller => "Auctions" %> |
+          <%= link_to "Help",:controller => "" %> |
+          <%= link_to "Contact us", :action => "" %> |
+          <%= link_to "FAQ", :action => "" %>
+          </font>
+          <tr><td><br></br></td></tr>
+        </td>
+      </tr>
+    </table>
+
+    <table align="center" width="90%<" border="0" cellspacing="0" cellpadding="0">
+      <tr><td width="90%"><%= image_tag("logo banner.jpg")  %></td></tr>
+      <tr><td><br></br></td></tr>
+    </table>
+
+    <table align="center" width="90%" border="0" cellspacing ="0" cellpadding="0">
+      <tr>
+        <td align="left">
+           <% if session[:user_id].nil? %> <strong><i>Welcome!</i></strong>
+              <%= link_to "Sign in",:controller => "users", :action => "login" %> or
+              <%= link_to "Register",:controller => "users",:action => "new" %>
+            <% else %>
+              You are logged as: <strong><%= @user[:username] %></strong>.
+              <%= link_to "logout",:controller => "users", :action=>"logout" %>
+            <% end %>
+        </td>
+      </tr>
+      <tr><td><br></br></td></tr>
+    </table>
+
+    <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="6" cellpadding="0">
+      <tr><td>
+          <form name="input" action="html_form_action.asp" method="get">
+            <i>What are you looking for?</i>
+        <input type="text" size="30" name="user" />
+        <input type="submit" size="15" value="Search Away!" />
+        <%= link_to "Advanced Search",:controller => "" %>
+      </form>
+        </td></tr>
+    </table>
+
+    <div id="columns">
+      <div id="sideTOP">
+        <a href="Activity Summary">
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u> <%= link_to "Activity Summary", @user %> </u></td></tr>
+          </table>
+        </a><br />
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u><%= link_to "Personal Information", :controller => "users", :action=> "personalInfo" %></u></td></tr>
+          </table>
+        <br />
+         <a href="Messages">
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u><%= link_to "Messages", :controller => "messages", :action=> "show" %></u></td></tr>
+          </table>
+        </a><br />
+        <a href="Watch List">
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u>Watch List</u></td></tr>
+          </table>
+        </a><br />
+
+        <a href="Watch List">
+          <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr><td>&nbsp;</td></tr>
+          </table>
+        </a><br />
+
+
+
+    </div>
+    </div>
+
+    <!-- Font codes by Quackit.com -->
+
+    <p style="color: green;font-size:large;"><%= flash[:notice] %></p>
+    <p style="color: red"><%= flash[:error] %></p>
+    <p style="color: orange"><%= flash[:warning] %></p>
+
+    <%= yield %>
+
+    <div id="content">
+
+      <div class="textleft" style="padding-left:120px;">
+
+    <br /><br />
+     <%= link_to "Reply", :controller => "messages", :action=> "new", :to_ID => @sender.id %>
+        <%= link_to "View all", :controller => "messages", :action=> "index" %>
+      <%= link_to "Compose", :controller => "messages", :action=> "new" %>
+        <br /><br />
+
+        <% if @message != nil %>
+        <table align="center" bgcolor="#66f5fa" width="100%" border="1" cellspacing="0" cellpadding="0">
+
+          <tr><td>
+              <b>Subject:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @message.title %><br></br>
+              <b>From:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @sender.username %><br></br>
+              <b>Received at:</b>&nbsp;&nbsp;<%= @message.send_time %></td>
+          </tr>
+        </table>
+        <table align="center" width="100%" border="1" cellspacing="0" cellpadding="0">
+          <tr><td>
+              <div id="padded">
+                <br></br>
+          <%= @message.content %><br></br>
+          <br></br>
+              </div>
+       </td></tr>
+        </table>
+       <% end %>
+      </div>
+    
+    </div>
+
+
+
+
+
+
+
+
+
+    <div id="footer">
+
+      <th align="center" width="600">
+        <%= image_tag("small logo.jpg") %>
+
+        <font size="2">
+          <%= link_to "Privacy", :controller => "" %>
+          <%= link_to "About us",:controller => "" %>
+          <%= link_to "Career" , :action => "" %>
+          <%= link_to "Contact" , :action => "" %>
+
+        </font>
+
+      </th>
+    </div>
+
+    
+    </div>
+
+  </body>
+</html>
+

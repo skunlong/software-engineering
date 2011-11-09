@@ -1,0 +1,18 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Thanks for your bid at Phoenix Auction.com, <%=h @user.username %></h1>
+    <p>
+      You have successfully bid an item at Phoenix Auction.com. <br/>
+      Your username is: <%= @user.username %>.<br/>
+      Your bid is <%=  @auction.auction_name %>.<br/>
+      Now you provide the highest bid.<br/>
+      To check your bid, just follow this link: <%= url_for(:host => "Phoenix Auction.com", :controller => "main", :action => "welcome") %>.
+    </p>
+    <p>Thanks for joining us and have a great day!</p>
+  </body>
+</html>

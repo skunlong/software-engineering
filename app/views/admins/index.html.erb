@@ -1,0 +1,32 @@
+<h1>Administrator Login</h1>
+
+<% form_remote_tag :url => { :action => 'login' }, :success=>"evalResponse(request.responseText);" do %>
+  <div>User Name:<%= text_field "admin", "user_name", :size=>20 %></div>
+  <div>&nbsp;&nbsp;Password:<%= password_field "admin", "password", :size=>20 %></div>
+  <%= submit_tag "Login"  %>
+<% end %>
+<br />
+
+<%= render(:partial => 'login_result') %>
+
+<script type="text/javascript">
+  function evalResponse(string)
+  {
+    try
+    {
+      var result = string.evalJSON(true);
+      if(result.error != "")
+      {
+        $("login_result").update(result.error);
+      }
+      else
+      {
+        window.location = result.location;
+      }
+    }
+    catch(error)
+    {
+      $("login_result").update("Input error! Please input again!");
+    }
+  }
+</script>

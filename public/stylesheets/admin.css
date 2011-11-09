@@ -1,0 +1,28 @@
+.container
+{
+    width: 95%;
+    text-align: center;
+    padding: 3px;
+    margin: 0px auto;
+}
+
+.left_column
+{
+    width: 20%;
+    float: left;
+    display: inline;
+}
+
+.right_column
+{
+    width: auto;
+    display: inline;
+}
+
+#notice {
+    border: 2px solid red;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: #f0f0f0;
+    font: bold smaller sans-serif;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag "general" %>
+    <title>Auctions: <%= controller.action_name %></title>
+
+  </head>
+
+  <body id="users">
+    <div id="wrap">
+
+    <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="right">
+          <font size="2">
+          <%= link_to "Home", :controller => "main", :action=> "welcome" %> |
+          <%= link_to "My Account", @user %> |
+          <%= link_to "Auctions",:controller => "Auctions" %> |
+          <%= link_to "Help",:controller => "" %> |
+          <%= link_to "Contact us", :action => "" %> |
+          <%= link_to "FAQ", :action => "" %>
+          </font>
+          <tr><td><br></br></td></tr>
+        </td>
+      </tr>
+    </table>
+
+
+
+
+    <table align="center" width="90%<" border="0" cellspacing="0" cellpadding="0">
+      <tr><td width="90%"><%= image_tag("logo banner.jpg")  %></td></tr>
+      <tr><td><br></br></td></tr>
+    </table>
+
+    <table align="center" width="90%" border="0" cellspacing ="0" cellpadding="0">
+      <tr>
+        <td align="left">
+           <% if session[:user_id].nil? %> <strong><i>Welcome!</i></strong>
+              <%= link_to "Sign in",:controller => "users", :action => "login" %> or
+              <%= link_to "Register",:controller => "users",:action => "new" %>
+            <% else %>
+              You are logged as: <strong><%= @user.username %></strong>.
+              <%= link_to "logout",:controller => "users", :action=>"logout" %>
+            <% end %>
+        </td>
+      </tr>
+      <tr><td><br></br></td></tr>
+    </table>
+
+    <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="6" cellpadding="0">
+      <tr><td>
+          <form name="input" action="html_form_action.asp" method="get">
+            <i>What are you looking for?</i>
+        <input type="text" size="30" name="user" />
+        <input type="submit" size="15" value="Search Away!" />
+        <%= link_to "Advanced Search",:controller => "" %>
+      </form>
+        </td></tr>
+    </table>
+
+
+
+    <div id="columns">
+      <div id="sideTOP">
+        <a href="Activity Summary">
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u><%= link_to "Activity Summary", @user %></u></td></tr>
+          </table>
+        </a><br />
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u><%= link_to "Personal Information", :controller => "users", :action=> "personalInfo" %></u></td></tr>
+          </table>
+        <br />
+         <a href="Messages">
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u><%= link_to "Messages", :controller => "messages", :action=> "show" %></u></td></tr>
+          </table>
+        </a><br />
+        <a href="Watch List">
+          <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="4" cellpadding="0">
+            <tr><td><u>Watch List</u></td></tr>
+          </table>
+        </a><br />
+
+        <a href="Watch List">
+          <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr><td>&nbsp;</td></tr>
+          </table>
+        </a><br />
+
+
+
+    </div>
+    </div>
+
+    <!-- Font codes by Quackit.com -->
+
+    <p style="color: green;font-size:large;"><%= flash[:notice] %></p>
+    <p style="color: red"><%= flash[:error] %></p>
+    <p style="color: orange"><%= flash[:warning] %></p>
+
+
+    <%= yield %>
+
+
+
+    <div id="sendmessage">
+      <div class="textcenter">
+
+<% if flash[:notice] %>
+<div id="notice" style="width: 300px; "><%= flash[:notice] %></div>
+<% end %>
+<% form_for :message, :url => {:action => :create} do |form| %>
+To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% if @sender != nil && @sender.id != nil %>
+    <%= @sender.username %>
+    <%else%>
+  <%= form.text_field :receiver_name, :value => "#{@message[:receiver_name]}" %>
+   <%end%>
+<br />
+Subject: <%= form.text_field :title, :value => "#{@message[:title]}" %><br />
+<br />
+<%= text_area :message, :content, :cols => 50, :rows => 15, :value => "#{@message[:content]}" %>
+<br />
+
+<%= submit_tag "send" %>
+<% end %>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+      <th align="center" width="600">
+        <%= image_tag("small logo.jpg") %>
+
+        <font size="2">
+          <%= link_to "Privacy", :controller => "" %>
+          <%= link_to "About us",:controller => "" %>
+          <%= link_to "Career" , :action => "" %>
+          <%= link_to "Contact" , :action => "" %>
+
+        </font>
+
+      </th>
+    </div>
+
+  </body>
+</html>
+

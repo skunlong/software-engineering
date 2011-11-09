@@ -1,0 +1,47 @@
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.htm
+
+printer:
+  id: 1
+  auction_name: 'printer'
+  description: 'Brand new HP Deskjet printer'
+  image_url: '/images/HPDeskJet.png'
+  start_price: 9.99
+  current_price: 9.99
+  expire: 2010-12-08 00:30:38
+  status: true
+  created_at: 2010-12-08 00:30:38
+  updated_at: 2010-12-08 00:30:38
+  user_name: 'luca'
+  visible: true
+  category: 'Computers & Office->Computers'
+
+iphone:
+  id: 2
+  auction_name: 'iphone'
+  description: 'iPhone 4'
+  image_url: '/images/iphone.jpg'
+  start_price: 20.00
+  current_price: 120.00
+  expire: 2010-12-08 00:30:38
+  status: true
+  created_at: 2010-12-08 00:30:38
+  updated_at: 2010-12-08 00:30:38
+  user_name: 'kunniu'
+  visible: true
+  category: 'Computers & Office->Computers'
+
+itouch:
+  id: 3
+  auction_name: 'itouch'
+  description: 'iPhone 4'
+  image_url: '/images/iphone.jpg'
+  start_price: 20.00
+  current_price: 120.00
+  expire: 2010-12-08 00:30:38
+  status: true
+  created_at: 2010-12-08 00:30:38
+  updated_at: 2010-12-08 00:30:38
+  user_name: 'userno1'
+  visible: true
+  category: 'Computers & Office->Computers'

@@ -1,0 +1,18 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>There is another bid higher than yours at Phoenix Auction.com, <%=h @previous_user.username %></h1>
+    <p>
+      There is another bid higher than yours at Phoenix Auction.com. <br/>
+      Your username is: <%= @previous_user.username %>.<br/>
+      Your bid is <%=  @auction.auction_name %>.<br/>
+      The new bid now is  <%=  @auction.current_price %>.
+      If you want to bid higher, just follow this link: http://test.com/auctions/show/<%= @auction.id %> .
+    </p>
+    <p>Thanks for joining us and have a great day!</p>
+  </body>
+</html>

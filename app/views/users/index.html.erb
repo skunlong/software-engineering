@@ -1,0 +1,43 @@
+<% if session[:admin_id] == nil %>
+  <%= link_to :controller => "main", :action=> "welcome" %>
+<% else %>
+  <h1>Listing users</h1>
+
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Register date</th>
+      <th>Change date</th>
+      <th>Email</th>
+      <th>State</th>
+      <th>Salt</th>
+      <th>Identity</th>
+    </tr>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=h user.id %></td>
+        <td><%=h user.username %></td>
+        <td><%=h user.hash_password %></td>
+        <td><%=h user.register_date %></td>
+        <td><%=h user.change_date %></td>
+        <td><%=h user.email %></td>
+        <td><%=h user.state %></td>
+        <td><%=h user.salt %></td>
+        <td><% if user.identity %>Seller<% else %>Buyer<% end %> </td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+
+
+      </tr>
+    <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to 'New user', new_user_path %>
+
+<% end %>

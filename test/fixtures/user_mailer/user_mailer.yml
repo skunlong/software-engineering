@@ -1,0 +1,11 @@
+# using the find method, we grab the "real" david as a User
+#iiiiii = users(:iiiiii).find
+
+# and now we have access to methods only available to a User class
+#email iiiiii.email
+
+iiiiii_mailer:
+  username: iiiiii
+  password: iiiiii
+  email: zqsharejoy@gmail.com
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag "general" %>
+    <%= javascript_include_tag :defaults %>
+    <title>Login: <%= controller.action_name %></title>
+    <script type="text/javascript">
+      function evalResponse(string)
+      {
+        try
+        {
+          var result = string.evalJSON(true);
+          if(result.error != "")
+          {
+            $("login_result").update(result.error);
+          }
+          else
+          {
+            window.location = result.location;
+          }
+        }
+        catch(error)
+        {
+          $("login_result").update("Input error! Please input again!");
+        }
+      }
+    </script>
+
+
+  </head>
+
+
+  <body id="users">
+    <div id="wrap">
+      <table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="right">
+            <font size="2">
+              <%= link_to "Home", :controller => "main", :action=> "welcome" %> |
+              <%= link_to "My Account", @user %> |
+              <%= link_to "Auctions", :controller => "auctions", :action=> "index" %> |
+              <%= link_to "Help",:controller => "" %> |
+              <%= link_to "Contact us", :action => "" %> |
+              <%= link_to "FAQ", :action => "" %>
+            </font>
+            <tr><td><br></br></td></tr>
+          </td>
+        </tr>
+      </table>
+
+
+
+
+      <table align="center" width="90%<" border="0" cellspacing="0" cellpadding="0">
+        <tr><td width="90%"><%= image_tag("logo banner.jpg")  %></td></tr>
+        <tr><td><br></br></td></tr>
+      </table>
+
+
+      <table align="center" width="100%" border="0" cellspacing ="0" cellpadding="0">
+        <tr>
+          <td align="left" width="90%">
+            <% if session[:user_id].nil? %> <strong><i>Welcome!</i></strong>
+              <%= link_to "Sign in",:controller => "users", :action => "login" %> or
+              <%= link_to "Register",:controller => "users",:action => "new" %>
+            <% else %>
+              You are logged as: <strong><%= @user[:username] %></strong>.
+              <%= link_to "logout",:controller => "users", :action=>"logout" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr><td><br></br></td></tr>
+      </table>
+
+
+      <table bgcolor="#fde37d" align="center" width="100%" border="0" cellspacing="6" cellpadding="0">
+        <tr><td>
+            <form name="input" action="html_form_action.asp" method="get">
+              <i>What are you looking for?</i>
+              <input type="text" size="30" name="user" />
+              <input type="submit" size="15" value="Search Away!" />
+              <%= link_to "Advanced Search",:controller => "" %>
+            </form>
+          </td></tr>
+      </table>
+
+
+
+      <div id="columns">
+        <div id="sideTOP">
+          <a href="All Categories">All Categories</a><br />
+          <a href="Luggage">Luggage</a><br />
+          <a href="Book">Book</a><br />
+          <a href="wireless">Wireless</a><br />
+          <a href="Apparel">Apparel</a><br />
+          <a href="Comp">Comp</a><br />
+          <a href="Costumes">Costumes</a><br />
+          <a href="Digcam">Digicam</a><br />
+          <a href="Electronics">Electronics</a><br />
+          <a href="Finance">Finance</a><br />
+          <a href="jewelry">jewelry</a><br />
+          <a href=""></a>something here<br />
+          <a href=""></a>something else<br />
+          <a href=""></a>whatever<br />
+          <a href=""></a>and ever<br />
+          <a href=""></a>and ever<br />
+
+          <div id="sideBOTTOM">
+            <a href="ADV one">ADV one</a><br />
+            <a href="">ADV two</a><br />
+            <a href="">ADV QI</a><br />
+            <a href=""></a>whatever<br />
+            <a href=""></a>and ever<br />
+            <a href=""></a>and ever<br />
+            <a href=""></a>and ever<br />
+            <a href=""></a>and ever<br />
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Font codes by Quackit.com -->
+
+      <p style="color: green;font-size:large;"><%= flash[:notice] %></p>
+      <p style="color: red"><%= flash[:error] %></p>
+      <p style="color: orange"><%= flash[:warning] %></p>
+      <%= yield %>
+      <div id="log-in">
+        <br />
+        <h1>User Login</h1>
+        <br />
+        <% form_remote_tag :url => { :controller => :users, :action => 'login' }, :success=>"evalResponse(request.responseText);" do %>
+          User Name:<%= text_field "user", "username", :size=>20 %>
+          <br></br><br></br>
+          &nbsp;&nbsp;Password:<%= password_field "user", "password", :size=>20 %>
+          <br></br>
+          <br></br>
+          <%= submit_tag "Login"  %><br><br>
+          <%= link_to 'Register', :action => 'new' %> |
+          <%= link_to 'Forgot my password?', :action => 'forgot_password' %>
+
+        <% end %>
+        <br />
+        <%= render(:partial => 'login_result') %>
+      </div>
+
+      <div id="footer">
+        <th align="center" width="600">
+          <%= image_tag("small logo.jpg") %>
+
+          <font size="2">
+            <%= link_to "Privacy", :controller => "" %>
+            <%= link_to "About us",:controller => "" %>
+            <%= link_to "Career" , :action => "" %>
+            <%= link_to "Contact" , :action => "" %>
+
+          </font>
+
+        </th>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Your auction is closed now in Phoenix Auction Site, <%=h @auction_user.username %></h1>
+    <p>
+      Your auction is closed now at Phoenix Auction.com. <br/>
+      Your username is: <%= @auction_user.username %>.<br/>
+      Your auction is <%=  @auction.auction_name %>.<br/>
+      The bid now is  <%=  @auction.current_price %>.<br/>
+      The bid is from the buyer <%=  @last_user.username %>.
+      If you want to view your auction, just follow this link: http://test.com/auctions/show/<%= @auction.id %> .
+    </p>
+    <p>Thanks for joining us and have a great day!</p>
+  </body>
+</html>

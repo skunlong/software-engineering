@@ -1,0 +1,8 @@
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+<%end%>
